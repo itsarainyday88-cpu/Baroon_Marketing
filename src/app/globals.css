@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FAFAF9; /* Warm White (Background/Cards) */
+  --color-secondary: #2C4C3B; /* Deep Forest Green (Text/Sidebar) */
+  --color-accent: #A48970; /* Matte Bronze */
+  --color-sand: #E6DDC4; /* Soft Sand */
+  
+  --font-serif: var(--font-noto-serif), serif;
+  --font-sans: var(--font-noto-sans), sans-serif;
+}
+
+:root {
+  --background: #FAFAF9;
+  --foreground: #2C4C3B;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* Custom Utilities */
+@utility container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
