@@ -62,12 +62,15 @@ export async function* generateAgentResponseStream(agentId: string, message: str
     };
 
     try {
-        console.log('Stream: Starting generation...');
-        // User requested: google/gemini-2.5-flash:free
-        // Mapping to Google SDK format: gemini-2.5-flash
-        yield* tryStream('gemini-2.5-flash', 3);
+        console.log('Stream: Starting generation with gemini-2.5-flash...');
+        yield* tryStream('gemini-2.5-flash', 2);
     } catch (error: any) {
-        console.warn('Stream failed:', error.message);
-        throw error;
+        console.warn('Primary model failed, attempting fallback to gemini-1.5-flash:', error.message);
+        try {
+            yield* tryStream('gemini-1.5-flash', 2);
+        } catch (fallbackError: any) {
+            console.error('All models failed:', fallbackError.message);
+            throw fallbackError;
+        }
     }
 }
