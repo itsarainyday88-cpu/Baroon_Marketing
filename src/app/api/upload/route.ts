@@ -1,10 +1,14 @@
 
 import { NextRequest, NextResponse } from 'next/server';
-const pdf = require('pdf-parse');
+// @ts-ignore
 const officeParser = require('office-text-extractor');
 import { GoogleGenerativeAI } from '@google/generative-ai';
+// @ts-ignore
+const PDFParser = require('pdf2json');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
     try {
@@ -19,8 +23,15 @@ export async function POST(req: NextRequest) {
         let text = '';
 
         if (file.type === 'application/pdf') {
-            const data = await pdf(buffer);
-            text = data.text;
+            const pdfParser = new PDFParser(null, 1); // 1 = text content only
+
+            text = await new Promise((resolve, reject) => {
+                pdfParser.on("pdfParser_dataError", (errData: any) => reject(errData.parserError));
+                pdfParser.on("pdfParser_dataReady", () => {
+                    resolve(pdfParser.getRawTextContent());
+                });
+                pdfParser.parseBuffer(buffer);
+            });
         } else if (
             file.type.includes('presentation') ||
             file.type.includes('spreadsheet') ||

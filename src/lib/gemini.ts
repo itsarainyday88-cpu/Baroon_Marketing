@@ -20,6 +20,8 @@ export async function* generateAgentResponseStream(agentId: string, message: str
         const model = genAI.getGenerativeModel({
             model: modelName,
             systemInstruction: getSystemInstruction(agentId, mode),
+            // @ts-ignore
+            tools: [{ googleSearch: {} }],
         });
 
         const chat = model.startChat({
