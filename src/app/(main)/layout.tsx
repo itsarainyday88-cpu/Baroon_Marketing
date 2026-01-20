@@ -30,8 +30,6 @@ function Sidebar() {
         { id: 'Supporter', name: 'Supporter', role: '컨설턴트', icon: MessageSquare, desc: '카카오톡/네이버 톡톡 등 고객 문의 응대 스크립트 작성' },
         { id: 'Reputation', name: 'Reputation', role: '위기 관리자', icon: ShieldAlert, desc: '네이버 리뷰 댓글 붙여넣으면 적절한 답변 생성하는 에이전트' },
         { id: 'Enemy', name: 'Enemy', role: '시장 분석가', icon: Search, desc: '근처 치과 모두 검색하여 트렌드 및 경쟁사 조사해주는 에이전트' },
-        { id: 'Analyst', name: 'Analyst', role: '데이터 분석가', icon: Users, desc: '마케팅 성과(ROI, CTR) 분석 및 수치 기반 데이터 해석' },
-        { id: 'Web_D', name: 'Web_D', role: '개발자', icon: Code, desc: '웹사이트 UI/UX 수정 및 깃허브 코드 배포 관리' },
     ];
 
     return (
@@ -120,7 +118,7 @@ function Header() {
                 </span>
             </div>
             <div className="flex gap-2">
-                <span className="px-2 py-1 rounded bg-sand/30 text-[10px] font-bold text-secondary tracking-wide border border-sand/50">GEMINI 3.0 PRO</span>
+                <span className="px-2 py-1 rounded bg-sand/30 text-[10px] font-bold text-secondary tracking-wide border border-sand/50">GEMINI</span>
                 <span className="px-2 py-1 rounded bg-blue-50 text-[10px] font-bold text-blue-700 tracking-wide border border-blue-100">MCP ENABLED</span>
             </div>
         </div>

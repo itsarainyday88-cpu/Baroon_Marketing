@@ -21,7 +21,7 @@ export async function* generateAgentResponseStream(agentId: string, message: str
             model: modelName,
             systemInstruction: getSystemInstruction(agentId, mode),
             // @ts-ignore
-            tools: [{ googleSearch: {} }],
+            tools: ['Enemy', 'Marketer', 'Blog', 'Dang', 'Manager'].includes(agentId) ? [{ googleSearch: {} }] : [],
         });
 
         const chat = model.startChat({
